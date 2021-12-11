@@ -35,11 +35,21 @@ router.post("/", async(req,res) => {
     const myuser = new UserInfo({
         recipeID: req.body.recipeID,
         name:req.body.name,
-        instruction:req.body.instruction,
-        ingredient:req.body.ingredient,
+        instructions:req.body.instructions,
+        ingredients:req.body.ingredients,
+        difficulty:req.body.difficulty,
+
+
+        ingredientsSupplierLink:req.body.ingredientsSupplierLink,
+        ingredientsSubsititution:req.body.ingredientsSubsititution,
+
         mediaLink:req.body.mediaLink,
         createdBy:req.body.createdBy,
-        comments:req.body.comments,
+        commentsContent:req.body.commentsContent,
+        commentsUserID:req.body.commentsUserID,
+        rating:req.body.rating,
+        createdBy:req.body.createdBy,
+
     });
     try{
         const savedUsers = await myuser.save();
@@ -61,12 +71,21 @@ router.patch("/:recipeID", async (req, res) => {
         { _id: id },
         {
           $set: { 
-              name: req.body.name,
-              instruction: req.body.instruction,
-              ingredients: req.body.ingredients,
-              mediaLink: req.body.mediaLink,
-              createdBy: req.body.createdBy,
-              comments: req.body.comments,
+            recipeID: req.body.recipeID,
+            name:req.body.name,
+            instructions:req.body.instructions,
+            ingredients:req.body.ingredients,
+            difficulty:req.body.difficulty,
+
+            ingredientsSupplierLink:req.body.ingredientsSupplierLink,
+            ingredientsSubsititution:req.body.ingredientsSubsititution,
+    
+            mediaLink:req.body.mediaLink,
+            createdBy:req.body.createdBy,
+            commentsContent:req.body.commentsContent,
+            commentsUserID:req.body.commentsUserID,
+            rating:req.body.rating,
+            commentCreatedBy:req.body.commentCreatedBy
             }
         }
       );

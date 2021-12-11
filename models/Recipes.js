@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const recipeSchema = mongoose.Schema({
     recipeID: {
         type: Number,
-        required:true
+        default :1
     },
     name:{
         type: String,
@@ -13,40 +13,63 @@ const recipeSchema = mongoose.Schema({
         type: Date,
         default : Date.now
     },
-    instruction:{
-        type: String,
+    instructions:{
+        type: String
+        //default :"NA"
+
     },
     ingredients:{
-        name:{
-            type: String,
-            default : "Unspecified"
-        },
-        supplierLink:{
-            type: String,
-            default : "Unspecified"
-        },
-        subsititution:{
-            type: String,
-            default : "none"
-        },
+        type: Array,
+            
+        ingredientsName: [
+              { type: String }
+        ]   
+          
+    },
+    // ingredientsName:{
+    //     type: String,
+    //     default :"NA"
+
+    // },
+    ingredientsSupplierLink:{
+        type: String,
+        default :"NA"
+
+    },
+    ingredientsSubsititution:{
+        type: String,
+        default :"NA"
+
     },
     mediaLink:{
         type:String,
+        default :"NA"
+
     },
-    createdBy:{
-        type:Number
+    commentsContent:{
+        type: String,
+        default :"NA"
+
     },
-    comments:{
-        content:{
-            type: String
+    commentsUserID:{
+        type: Number,
+        default :-1
+    },
+    rating:{
+        type: Number,
+        default:0,
+        default :-1
+
+    },
+    commentCreatedBy:{
+        type: Number,
+        default :-1
+
+    },
+    difficulty: {
+        type: Number,
+        default : 1
         },
-        userID:{
-            type: Number        },
-        rating:{
-            type: Number,
-            default:0
-        },
-    }
 });
 
 module.exports = mongoose.model('recipes', recipeSchema);

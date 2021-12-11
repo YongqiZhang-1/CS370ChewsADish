@@ -36,7 +36,9 @@ router.post("/", async(req,res) => {
       postID: req.body.postID,
       userID:req.body.userID,
       content:req.body.content,
-      media:req.body.media
+      media:req.body.media,
+      likeCount:req.body.likeCount,
+      comment:req.body.comment
   });
   try{
       const savedPost = await thePost.save();
@@ -52,16 +54,19 @@ router.post("/", async(req,res) => {
 
 
 // update a gallery post
-router.patch("/:recipeID", async (req, res) => {
+router.post("/:recipeID", async (req, res) => {
     try {
       const id = req.params.recipeID;
       const updatedCourse = await GalleryInfo.updateOne(
         { _id: id },
         {
           $set: { 
-            content: req.body.content,
-            media: req.body.media,
-            comments: req.body.comments
+            postID: req.body.postID,
+            userID:req.body.userID,
+            content:req.body.content,
+            media:req.body.media,
+            likeCount:req.body.likeCount,
+            comment:req.body.comment
           }
         }
       );
